@@ -11,7 +11,7 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-  res.render('index', { title: "top" });
+  res.render('index', { title: 'top' });
 });
 
 var server = http.createServer(app).listen(3000);
@@ -29,11 +29,15 @@ io.sockets.on('connection', function(socket) {
     pb.setCounter(++val);
   });
 
-  pb.on("turnOn", function() {
-    io.sockets.emit("turnOn");
+  pb.on('turnOn', function() {
+    io.sockets.emit('turnOn');
   });
 
-  pb.on("turnOff", function() {
-    io.sockets.emit("turnOff");
+  pb.on('turnOff', function() {
+    io.sockets.emit('turnOff');
+  });
+
+  pb.on('tick', function() {
+    io.sockets.emit('tick');
   });
 });

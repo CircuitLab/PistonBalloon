@@ -6,13 +6,17 @@ $(function() {
     socket.emit('go');
   });
 
-  socket.on("turnOn", function() {
+  socket.on('turnOn', function() {
     console.log('turn on switch.');
-    $("#go").attr("disabled", false);
+    $('#go').attr('disabled', false);
   });
 
-  socket.on("turnOff", function() {
+  socket.on('turnOff', function() {
     console.log('turn off switch.');
-    $("#go").attr("disabled", true);
+    $('#go').attr('disabled', true);
+  });
+
+  socket.on('tick', function() {
+    console.log('tickin\'');
   });
 });
