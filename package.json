@@ -1,0 +1,11 @@
+{
+    "name": "pistonballoon"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "3.0.2"
+    , "jade": "0.27.7"
+    , "socket.io": "0.9.11"
+    , "gpio": "0.2.1"
+  }
+}
