@@ -23,7 +23,11 @@ $(function() {
     console.log('tickin\'');
   });
 
-
+  socket.on('pump', function(data) {
+    pumpNumber = data;
+    console.log(pumpNumber);
+    pumpNum(pumpNumber);
+  });
   
 
   /*
@@ -236,7 +240,7 @@ var width = 400,
     });
      
      socket.emit('go');
-     pumpNum(pumpNumber + 1);
+     console.log('emit go');
    }
  }
 
