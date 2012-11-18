@@ -22,9 +22,16 @@ var io = require('socket.io').listen(server);
 var pb = new PistonBalloon();
 
 var num = 0;
-
+var online  =0;
 io.sockets.on('connection', function(socket) {
   console.log(socket.id, 'connected.');
+  ++online;
+  io.sockets.emit('onlineNum', { online: online });
+
+  socket.on('disconnect',function(){
+   --online;
+   io.sockets.emit('onlineNum', { online: online });
+  });
 
   socket.on('go', function() {
     val = pb.getCounter();
@@ -46,3 +53,5 @@ io.sockets.on('connection', function(socket) {
     io.sockets.emit('tick', pb.getCounter);
   });
 });
+
+

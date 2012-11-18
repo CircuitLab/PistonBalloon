@@ -29,6 +29,10 @@ socket.on('pump', function(data) {
   pumpNum(pumpNumber);
 });
 
+socket.on("onlineNum",function(data){
+    onlineNum = data.online;
+    changeOnlineNum();          
+})
 
   /*
    *display
@@ -54,7 +58,8 @@ socket.on('pump', function(data) {
    circleText = "wait...",
    pumpNumber = 0,
    maxPumpNumber = 200;  //max 
-   pumpData = [ pumpNumber, maxPumpNumber - pumpNumber];
+   pumpData = [ pumpNumber, maxPumpNumber - pumpNumber],
+   onlineNum = 0;
 
 
 
@@ -81,12 +86,15 @@ socket.on('pump', function(data) {
 
   var title = vis.append("text")
     .attr("x", 20)
-    .attr("y", 15)
-    .attr("font-size", "15")
+    .attr("y", 17)
+    .attr("font-size", "18")
     .attr("fill","#ddd")
-    .text("PistonBalloon")
+    .text("online:")
     .on("click", pumpTurnOn);
 
+  function changeOnlineNum() {
+    title.text("online:" + onlineNum);
+  }  
 
   //show pumpData gauge
   var g = vis.selectAll("arc2")
@@ -214,12 +222,12 @@ function tweenPie3(b) {
        .attr("r", 1e-6)
        .attr("opacity", 1)
        .transition()
-       .duration(1000)
+       .duration(500)
        .ease(Math.sqrt)
        .attr("r", 80)
        .attr("opacity", 1)
        .transition()
-       .delay(1000)
+       .delay(500)
        .duration(500)
        .ease(Math.sqrt)
        .attr("opacity", 0)
