@@ -50,7 +50,7 @@ io.sockets.on('connection', function(socket) {
   });
 
   pb.on('tick', function() {
-    io.sockets.emit('tick', pb.getCounter);
+    io.sockets.emit('tick', pb.getCounter());
   });
 });
 
