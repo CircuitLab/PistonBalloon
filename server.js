@@ -14,8 +14,9 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'PistonBalloon' });
 });
 
-var server = http.createServer(app).listen(3000);
-console.log('server start: ', 3000);
+var port = 80;
+var server = http.createServer(app).listen(port);
+console.log('server start: ', port);
 
 var io = require('socket.io').listen(server);
 var pb = new PistonBalloon();
@@ -42,6 +43,6 @@ io.sockets.on('connection', function(socket) {
   });
 
   pb.on('tick', function() {
-    io.sockets.emit('tick');
+    io.sockets.emit('tick', pb.getCounter);
   });
 });
